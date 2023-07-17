@@ -1,0 +1,18 @@
+.calculator { 
+    border-collapse: collapse;
+    border: 1px solid darkblue;
+}
+
+.calculator td + td {
+    text-align: center;
+}
+
+th, td {
+    border: 1px solid darkblue; 
+    padding: 10px;
+    width: 33%;
+}
+
+tbody tr:nth-child(odd) {
+    background-color: rgb(190, 246, 236);
+}
