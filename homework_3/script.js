@@ -9,11 +9,27 @@ lastStringSymbol = `!`;
 
 message = confirm(`Tell me three most important words 💚`);
 
-if (message !== false) {
+if (message) {
   while (wordIndex <= countOfWords) {
     do {
-      word = prompt(`Enter word #${wordIndex}`, `anna`);
-    } while (word === null || word.trim() === ``);
+      word = prompt(`Enter word #${wordIndex}`);
+
+      letterIndex = 0;
+      isWordIncludesNumber = false;
+      isWordEmpty = word === null || word.trim() === ``;
+
+      while (!isWordEmpty && letterIndex < word.length) {
+        currentLetter = word[letterIndex];
+
+        if (!isNaN(+currentLetter)) {
+          isWordIncludesNumber = true;
+        }
+
+        letterIndex++;
+      }
+
+      isWordInvalid = isWordEmpty || isWordIncludesNumber;
+    } while (isWordInvalid);
 
     do {
       wordTransformation = prompt(
