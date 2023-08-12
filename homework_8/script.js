@@ -40,3 +40,34 @@ function getInfo(list, tableName) {
 document.write(getInfo(animals, `Animals`));
 
 document.write(getInfo(food, `Food`));
+
+
+// alternative way
+
+// function getInfo(list, tableName) {
+//   let TRs = [];
+
+//   for (let i = 0; i < list.length; i++) {
+//     let TDs = [];
+
+//     for (let j = 0; j < list[i].length; j++) {
+//       TDs.push(`<td>
+//       ${Array.isArray(list[i][j]) ? list[i][j].join(`; `) : list[i][j]} 
+//       </td>`)
+//     };
+
+//     TRs.push(`<tr>${TDs.join(``)}</tr>`);
+//   }
+  
+//   document.write(`
+//     <table>
+//       <caption><b>${tableName} info</b></caption>
+//         <tbody>
+//           ${TRs.join(``)}
+//         </tbody>
+//     </table>
+//   `);
+// };
+  
+// getInfo(animals, `Animals`);
+// getInfo(food, `Food`);
