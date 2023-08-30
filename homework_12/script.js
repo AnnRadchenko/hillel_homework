@@ -50,33 +50,21 @@ const PRODUCTS = [
         discountPercentage: 4.15,
         rating: 4.25
     }
-]
+];
 
 const PERCENT = 100;
 
-function compareNumeric(a, b) {
-    if (a.rating > b.rating) return -1;
-    if (a.rating == b.rating) return 0;
-    if (a.rating < b.rating) return 1;
-}
+const PRODUCT_TITLES  = [`Product title`, `Product price`, `Product discount percentage`, `Product rating`];
 
-let usersPromo = prompt(`Enter promo.`);
-if (usersPromo !== null) {
-    usersPromo = usersPromo.replaceAll(` `, ``).toUpperCase();
-}
+const getThead = (arr) => 
+`<thead>
+    <tr>
+        <th>${arr.join(`</th><th>`)}</th>
+    </tr>
+</thead>`;
 
-const isPromoActive = PROMO === usersPromo;
-
-const isSortByRatingActive = confirm(`Would you like to sort products by rating?`);
-
-const renderProductsTable = (products, promo, sortByRating) => {
-    const copiedProducts = JSON.parse(JSON.stringify(products));
-
-    if (sortByRating) {
-        copiedProducts.sort(compareNumeric);
-    }
-
-    let TRs = copiedProducts.map((item) => {
+const getTbody = (arr) => {
+    const TRs = arr.map((item) => {
         return `
         <tr>
             <td>${item.title}</td>
@@ -85,8 +73,15 @@ const renderProductsTable = (products, promo, sortByRating) => {
             <td>${item.rating}</td>
         </tr>`
     });
-    
-    const finalPrice = copiedProducts.reduce((currentValue, item) => {
+
+   return `
+    <tbody>
+        ${TRs.join(``)}
+    </tbody>`
+}
+
+const getFinalPrice = (products, promo) => (
+    products.reduce((currentValue, item) => {
         if (promo) {
             const discountPrice = item.price - (item.price * item.discountPercentage / PERCENT) + currentValue;
 
@@ -94,26 +89,47 @@ const renderProductsTable = (products, promo, sortByRating) => {
         } else {
             return currentValue + item.price;
         }
-    }, 0);
+    }, 0)
+);
+
+const getTfoot = (products, promo) => (`
+    <tfoot>
+        <tr>
+            <td colspan="4">Final price: ${getFinalPrice(products, promo)}$</td>
+        </tr>
+    </tfoot>`
+)
+
+function compareNumeric(a, b) {
+    if (a.rating > b.rating) return -1;
+    if (a.rating == b.rating) return 0;
+    if (a.rating < b.rating) return 1;
+}
+
+const renderProductsTable = (products, promo, sortByRating) => {
+    const copiedProducts = JSON.parse(JSON.stringify(products));
+
+    if (sortByRating) {
+        copiedProducts.sort(compareNumeric);
+    }
      
     document.write(`
         <table>
-            <thead>
-                <tr>
-                    <th>Product title</th>
-                    <th>Product price</th>
-                    <th>Product discount percentage</th>
-                    <th>Product rating</th>
-                </tr>
-            </thead>
-            <tbody>${TRs.join(``)}</tbody>
-            <tfoot>
-                <tr>
-                    <td colspan="4">Final price: ${finalPrice}$</td>
-                </tr>
-            </tfoot>
+            ${getThead(PRODUCT_TITLES)}
+            ${getTbody(copiedProducts)}
+            ${getTfoot(copiedProducts, promo)}
         </table>
     `)
 }
+
+let usersPromo = prompt(`Enter promo.`);
+
+if (usersPromo !== null) {
+    usersPromo = usersPromo.replaceAll(` `, ``).toUpperCase();
+}
+
+const isPromoActive = PROMO === usersPromo;
+
+const isSortByRatingActive = confirm(`Would you like to sort products by rating?`);
 
 renderProductsTable(PRODUCTS, isPromoActive, isSortByRatingActive);
