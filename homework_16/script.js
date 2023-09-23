@@ -1,9 +1,4 @@
 const btns = document.querySelectorAll(`[data-btn="action"]`);
-console.log(btns);
-
-const firstButton = document.querySelector(`#firstButton`);
-const secondButton = document.querySelector(`#secondButton`);
-const thirdButton = document.querySelector(`#thirdButton`);
 
 const firstFunc = (e) => {
     console.log(`First func for ${e.target.innerHTML}`);
