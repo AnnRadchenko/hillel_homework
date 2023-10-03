@@ -1,0 +1,32 @@
+table {
+    border-collapse: collapse;
+}
+
+th, td {
+    border: 1px solid black;
+    padding: 5px;
+}
+
+td div {
+    background-color: rgb(187, 178, 178);
+    border-radius: 7%;
+    padding: 3px;
+}
+
+div.active {
+    background-color: rgb(187, 25, 25);
+    color: white;
+}
+
+td + td {
+    width: 110px;
+}
+
+h3 {
+    margin: 3px;
+    font-size: medium;
+}
+
+button {
+    margin: 3px;
+}
