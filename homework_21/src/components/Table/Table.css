@@ -1,0 +1,14 @@
+table {
+    border-collapse: collapse;
+    margin-bottom: 20px;
+}
+
+td {
+    border: 1px solid black;
+    padding: 8px;
+    
+}
+
+td:first-child {
+    min-width: 100px;
+}
