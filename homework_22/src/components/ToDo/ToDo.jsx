@@ -1,5 +1,7 @@
 import React, { Component } from "react";
 import "./ToDo.css";
+import List from "../List/List";
+
 
 class ToDo extends Component {
   state = {
@@ -42,45 +44,24 @@ class ToDo extends Component {
 
     return (
       <div className="wrapper">
-        <div className="container">
-          {firstList.length > 0 && (
-            <>
-              <ul>
-                {firstList.map((item, index) => (
-                  <li key={index}>{item.title}</li>
-                ))}
-              </ul>
-              <button onClick={this.transferToSecond}>Transfer first to right</button>
-            </>
-          )}
-        </div>
-        <div className="container">
-          {secondList.length > 0 && (
-            <>
-              <ul>
-                {secondList.map((item, index) => (
-                  <li key={index}>{item.title}</li>
-                ))}
-              </ul>
-              <div>
-                <button onClick={this.transferToFirst}>Transfer first to left</button>
-                <button onClick={this.transferToThird}>Transfer first to right</button>
-              </div>
-            </>
-          )}
-        </div>
-        <div className="container">
-          {thirdList.length > 0 && (
-            <>
-              <ul>
-                {thirdList.map((item, index) => (
-                  <li key={index}>{item.title}</li>
-                ))}
-              </ul>
-              <button onClick={this.removeLastItem}>Remove last item</button>
-            </>
-          )}
-        </div>
+        <List
+          key={this.index}
+          list={firstList}
+          actions={[{ text: "Transfer first to right", action: this.transferToSecond }]}
+        />
+        <List
+          key={this.index}
+          list={secondList}
+          actions={[
+            { text: "Transfer first to left", action: this.transferToFirst },
+            { text: "Transfer first to right", action: this.transferToThird },
+          ]}
+        />
+        <List
+          key={this.index}
+          list={thirdList}
+          actions={[{ text: "Remove last item", action: this.removeLastItem }]}
+        />
       </div>
     );
   }
