@@ -1,0 +1,28 @@
+table {
+    border-collapse: collapse;
+    border: 1px solid black;
+}
+
+th {
+    padding: 10px;
+}
+
+th, td {
+    border: 1px solid black;
+}
+
+input {
+    border: none;
+    padding: 5px;
+}
+
+.checkbox {
+    margin-left: 30px;
+    cursor: pointer;
+}
+
+button {
+    margin: 5px 10px;
+    padding: 5px;
+    cursor: pointer;
+}
